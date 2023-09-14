@@ -3,6 +3,7 @@
 #include "globals.h"
 #include "room.h"
 #include "room4d.h"
+#include "pamphlet.cpp"
 
 class Room;
 
@@ -44,7 +45,8 @@ World::World() {
 	jail->AddStage(new Room("Jail", "You fond the princess! Thanks to the fruits given by a conviniently placed tree the princes has survived until now!\nCongratulations! You did it! You have saved the pricess and beaten Time Dork!"));
 
 	
-	auto clock = new Object("clock", "a complex pocket clock. Looks sort of magical, somehow.", box);
+	auto clock = new Object("clock", "a complex pocket clock. Looks sort of magical, somehow.", box, "watch");
+	auto pamphlet = new Object("pamphlet", pamphletText.c_str(), box, "paper");
 	auto tree = new Object("tree", "a mighty tree.", false, "", true);
 	auto apple = new Object("apple", "a delicious looking apple.", tree, "fruit", true, true, false);
 	apple->canPickUp = true;
@@ -193,7 +195,7 @@ bool World::ParseCommand(vector<string>& args)
 		{
 			PrintInventory();
 		}
-		else if (Same(args[0], "clock") || Same(args[0], "c")) {
+		else if (Same(args[0], "clock") || Same(args[0], "c") || Same(args[0], "watch")) {
 			TimeTravel();
 		}
 		else
@@ -249,7 +251,7 @@ bool World::ParseCommand(vector<string>& args)
 		}
 		else if (Same(args[0], "use"))
 		{
-			if (Same(args[1], "clock")) {
+			if (Same(args[1], "clock") || Same(args[0], "watch")) {
 				TimeTravel();
 			}
 			
@@ -278,6 +280,16 @@ bool World::ParseCommand(vector<string>& args)
 			Object* key = FindInventory(args[3]);
 			if (p == NULL) cout << "There is no " << args[1] << " in here.\n";
 			else if (key == NULL) cout << "You don't have the " << args[1] << ".\n";
+			else {
+				p->Unlock(key->name);
+			}
+		}
+		else if (Same(args[0], "use"))
+		{
+			Path* p = FindPath(args[3]);
+			Object* key = FindInventory(args[1]);
+			if (p == NULL) cout << "There is no " << args[3] << " in here.\n";
+			else if (key == NULL) cout << "You don't have the " << args[3] << ".\n";
 			else {
 				p->Unlock(key->name);
 			}

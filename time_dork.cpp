@@ -24,6 +24,7 @@ int main()
 
 	cout << WHITE_ "Welcome to Time Dork!\n" _WHITE;
 	cout << "----------------\n";
+	cout << "\nUse your wits to find the way into the Palace, past unimaginable\ndangers, and rescue the princess that has been imprisoned there.\n";
 
 	World my_world;
 
