@@ -8,10 +8,17 @@ MIT license: https://github.com/JordiAlonsoLlovet/Zork/blob/main/LICENSE<br />
 
 This is a game inspired by the 1977's Zork as well as classic point and click games.
 I've removed any RPG or combat elements in favour of puzzle like mechanics, so it is not possible
-to die or lose.
+to die or lose.<br />
 The game has a mechanic introduced in the first room that lets you travel between any room and
 a version of that same room in the past. Droping or removing items in the past may change
 some areas in the present.
+
+# Dificulties
+I must admit that I got overconfident  with this project. It has been a long time since I worked with c++, and I ended up rushing the code a bit. It is still completely functional and as far as I know there are no bugs, but poor planning of the class structure and how to keep track of every entity in the game has lead the game code to be a bit messy, and with too much code duplication.<br />
+Specifically, searching for the entity that the player is interacting with became extremely time consuming and I ended up writing the same for loop structure way too many times for way too many different functions that either search for an item in the inventory, in the room, in both, search for available paths...
+
+# Time travel
+The time travel mechanic works by having each room be an object (Room4d) that holdes two or three different rooms; one for the past, one for the present and an optional thir one for a changed version of the present. And I managed to make the code for adding rooms, paths, items, and even the specific conditions that make a room "change" as simple and lightweight as possible; which means it would be trivially easy to expand the game, or make entirely new maps in a pretty flexible manner.
 
 # WALKTHROUGH
 0 - You are in an area with no exits, just a box.<br />
