@@ -8,6 +8,9 @@ Path::Path(const char* name, const char* opposite_name, const char* description,
 	if (opposite_desc == NULL) opposite_desc = description;
 }
 
+Path::~Path()
+{}
+
 bool Path::IsNow(Time now) {
 	return timeline == now || timeline == Time::BOTH;
 }

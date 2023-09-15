@@ -102,6 +102,20 @@ World::World() {
 
 	currentLocation = entrance;
 }
+World::~World() {
+	for (list<Room4d*>::iterator it = rooms.begin(); it != rooms.end(); ++it)
+		delete* it;
+
+	for (list<Path*>::iterator it = paths.begin(); it != paths.end(); ++it)
+		delete* it;
+
+	for (list<Object*>::iterator it = inventory.begin(); it != inventory.end(); ++it)
+		delete* it;
+
+	inventory.clear();
+	rooms.clear();
+	paths.clear();
+}
 
 void World::Look() {
 	currentLocation->Get(now)->Look();

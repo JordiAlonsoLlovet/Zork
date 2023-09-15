@@ -4,7 +4,13 @@
 Room::Room(const char* name, const char* description) :
 	Entity(name, description, "")
 {
+}
+Room::~Room()
+{
+	for (list<Object*>::iterator it = items.begin(); it != items.end(); ++it)
+		delete* it;
 
+	items.clear();
 }
 
 void Room::Look() const 

@@ -9,6 +9,7 @@
 class World {
 public:
 	World();
+	~World();
 	void Look();
 	bool PutCommand(vector<string>& args);
 	bool ParseCommand(vector<string>& args);

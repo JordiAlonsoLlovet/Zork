@@ -13,6 +13,14 @@ Object::Object(const char* name, const char* description, Object* parent, string
 	if (parent != NULL) parent->inside.push_back(this);
 }
 
+Object::~Object()
+{
+	for (list<Object*>::iterator it = inside.begin(); it != inside.end(); ++it)
+		delete* it;
+
+	inside.clear();
+}
+
 void Object::Look(bool extended) const
 {
 	if (extended) {

@@ -8,6 +8,11 @@ Room4d::Room4d(Room* present, Room* past):
 	stages[0] = present;
 	name = present->name;
 };
+Room4d::~Room4d() {
+	delete past;
+	delete stages[0];
+	delete stages[1];
+}
 
 Room* Room4d::Get(Time t)
 {
